@@ -1,10 +1,14 @@
 /*
  * File: game.cpp
- * Author: Miranda Drummond
  * Date: November 21, 2023
  * Description: Game class to deal with initialization and controller of 2D my game application.
  */
 #include "game.h"
+#include <iostream>
+#include <vector>
+#include <ctime>
+#include <cstdlib>
+#include <cmath>
 
 const float Game::SCENE_WIDTH = 800.0f;
 const float Game::SCENE_HEIGHT = 600.0f;
@@ -87,19 +91,83 @@ void Game::processInput() {
     }
 }
 
+void Game::spawnGhost() {
+    // Randomly generate time intervals between ghost appearances (within a range)
+    float randomInterval = static_cast<float>(rand() % 2000 + 1000);
+    if (ghostTimer.getElapsedTime().asMilliseconds() > randomInterval) {
+        ghostTimer.restart();
+        // Randomly generate position for the ghost
+        float ghostX = static_cast<float>(rand() % static_cast<int>(SCENE_WIDTH));
+        float ghostY = static_cast<float>(rand() % static_cast<int>(SCENE_HEIGHT));
+
+        // Create and set properties for the ghost sprite using a texture
+        sf::CircleShape ghost;
+        ghost.setRadius(RADIUS/2);
+        ghost.setOrigin(RADIUS/2, RADIUS/2);
+        ghost.setPosition(ghostX, ghostY);
+        if (!ghostTexture.loadFromFile("resources/ghost.png")) {
+            std::cout << "Error loading ghost texture" << std::endl;
+        }
+
+        ghost.setTexture(&ghostTexture);
+
+        // Generate a random direction for the ghost
+        sf::Vector2f randomDirection(rand() % 3 - 1, rand() % 3 - 1);
+        sf::Vector2f ghostDirection = randomDirection;
+        // Add the ghost and its direction to the respective vectors
+        ghosts.push_back(ghost);
+        ghostDirections.push_back(ghostDirection);
+    }
+}
 
 
 /**
- * Function to update the position of the player
+ * Function to update the position of the player and ghosts.
  */
 void Game::update() {
-    float speed = 5.0f; // Adjust speed as needed
+    processInput();
+
+    // Spawn a new ghost
+    spawnGhost();
+
+    // Ghost movement
+
+    float ghost_speed = 2.0f; // Adjust ghost speed as needed
+
+    // Update the position of each ghost based on its direction
+    for (size_t i = 0; i < ghosts.size(); ++i) {
+        // Get current ghost position
+        sf::Vector2f ghostPosition = ghosts[i].getPosition();
+
+        // Get the ghost's current direction
+        sf::Vector2f currentDirection = ghostDirections[i];
+
+        // Update the ghost's position based on the current direction and speed
+        sf::Vector2f newGhostPosition = ghostPosition + ghost_speed * currentDirection;
+
+        // Check window boundaries for the ghost and make it reflect on hitting the edges
+        if (newGhostPosition.x < 0 || newGhostPosition.x > SCENE_WIDTH - ghosts[i].getGlobalBounds().width) {
+            currentDirection.x = -currentDirection.x;
+            ghostDirections[i] = currentDirection;
+        }
+        if (newGhostPosition.y < 0 || newGhostPosition.y > SCENE_HEIGHT - ghosts[i].getGlobalBounds().height) {
+            currentDirection.y = -currentDirection.y;
+            ghostDirections[i] = currentDirection;
+        }
+
+        // Update ghost position
+        ghosts[i].setPosition(newGhostPosition);
+    }
+
+    // Player movement
+
+    float player_speed = 5.0f; // Adjust speed as needed
 
     // Get the current position
     sf::Vector2f position = player.getPosition();
 
     // Calculate the new position
-    sf::Vector2f newPosition = position + speed * playerDirection;
+    sf::Vector2f newPosition = position + player_speed * playerDirection;
 
     // Check for horizontal boundaries
     if (newPosition.x - RADIUS < 0) {
@@ -117,6 +185,17 @@ void Game::update() {
 
     // Update the position
     player.setPosition(newPosition);
+
+    // Collision detection between player and ghosts
+    for (size_t i = 0; i < ghosts.size(); ++i) {
+        if (player.getGlobalBounds().intersects(ghosts[i].getGlobalBounds())) {
+            // Collision detected, remove the ghost
+            ghosts.erase(ghosts.begin() + i);
+            ghostDirections.erase(ghostDirections.begin() + i);
+            // Perform any action we want upon collision (e.g., score update, game over)
+            // ...
+        }
+    }
 }
 
 
@@ -128,14 +207,20 @@ void Game::render() {
     window.clear(sf::Color::White);
     window.draw(background);
     window.draw(player);
+
+    // Draw all ghosts present on the screen
+    for (const auto& ghost : ghosts) {
+        window.draw(ghost);
+    }
+
     window.display();
 }
 /**
  * Main function to deal with events, update the player and render the updated scene on the window.
  */
 int Game::run() {
+    srand(static_cast<unsigned>(time(nullptr)));
     while (window.isOpen()) {
-        processInput();
         update();
         render();
     }
