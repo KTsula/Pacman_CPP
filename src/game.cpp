@@ -3,7 +3,7 @@
  * Date: November 21, 2023
  * Description: Game class to deal with initialization and controller of 2D my game application.
  */
-#include "game.h"
+#include "../include/game.h"
 #include <iostream>
 #include <vector>
 #include <ctime>

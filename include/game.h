@@ -7,12 +7,15 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
+class GameTest; // forward declaration (i looked this up so i can test my things later)
+
 class Game {
 public:
     Game();
     int run();
 
 private:
+    friend class GameTest; // this way we can test all of the private things when we test!
     static const float SCENE_WIDTH;
     static const float SCENE_HEIGHT;
     static const float PLAYER_START_X;
