@@ -12,14 +12,25 @@ class GameTest; // forward declaration (i looked this up so i can test my things
 class Game {
 public:
     Game();
-    int run();
 
+    // i tried to use friend classes but it didnt work so i just made what im testing public
+    int initWindow();
+    int initBackground();
+    int initPlayer();
+    int run();
+    bool isWindowOpen() const { return window.isOpen(); }
+    sf::Vector2f getPlayerPosition() const { return player.getPosition(); }
+    static const float PLAYER_START_X;
+    static const float PLAYER_START_Y;
+    void spawnGhost();
+    const std::vector<sf::CircleShape>& getGhosts() const { return ghosts; }
+
+    sf::Clock ghostTimer;
+    std::vector<sf::CircleShape> ghosts;
 private:
     friend class GameTest; // this way we can test all of the private things when we test!
     static const float SCENE_WIDTH;
     static const float SCENE_HEIGHT;
-    static const float PLAYER_START_X;
-    static const float PLAYER_START_Y;
     static const float RADIUS;
     sf::RenderWindow window;
     sf::Texture backgroundTexture;
@@ -27,16 +38,12 @@ private:
     sf::Texture playerTexture;
     sf::CircleShape player;
     sf::Vector2f playerDirection;
-    std::vector<sf::CircleShape> ghosts; // Vector to store ghost sprites
+    // Vector to store ghost sprites
     sf::Texture ghostTexture; // Ghost texture
     std::vector<sf::Vector2f> ghostDirections; // Vector to store ghost movement directions
-    sf::Clock ghostTimer; // Timer for ghost appearance
+    // Timer for ghost appearance
 
-    int initWindow();
-    int initBackground();
-    int initPlayer();
     void processInput();
     void update();
     void render();
-    void spawnGhost();
 };

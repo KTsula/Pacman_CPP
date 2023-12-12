@@ -4,7 +4,7 @@ project(2D_game_assignment)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
-
+include_directories(${SFML_INCLUDE_DIR})
 include_directories(include)
 
 configure_file(resources/background.png ${CMAKE_CURRENT_BINARY_DIR}/resources/background.png COPYONLY)

@@ -10,6 +10,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 # Add your test executable
 add_executable(Google_Tests_run test1.cpp
+        ../include/game.h
         ../src/game.cpp)
 
 # Link Google Test and SFML libraries

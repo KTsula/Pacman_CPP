@@ -1,0 +1,16 @@
+# ninja log v5
+1	578	1702378776459082325	Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	9cc64615d344f834
+2076	2120	1702378778006426000	lib/libgtest.a	a077bb15124b83bc
+2120	2135	1702378778020608000	lib/libgtest_main.a	c5c8add6d0f4e50f
+6	584	1702379040444740839	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	64142392140ffd29
+1	2076	1702378777953595279	Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	8c0b7eca82f06e5f
+8	705	1702394316286978156	Google_tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o	7e8217009366739a
+2135	2180	1702378778064547377	Google_tests/Google_Tests_run	bebd9447fe6f8a20
+20	636	1702394401761437426	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	64142392140ffd29
+636	810	1702394401933075592	Google_tests/Google_Tests_run	bebd9447fe6f8a20
+5	611	1702394639125715471	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	64142392140ffd29
+5	586	1702394688742168184	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	64142392140ffd29
+5	662	1702394688817473556	Google_tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o	7e8217009366739a
+662	814	1702394688968574470	Google_tests/Google_Tests_run	bebd9447fe6f8a20
+5	751	1702394780369351842	Google_tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o	7e8217009366739a
+752	910	1702394780528004480	Google_tests/Google_Tests_run	bebd9447fe6f8a20

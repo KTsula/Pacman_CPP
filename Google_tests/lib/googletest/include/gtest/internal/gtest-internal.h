@@ -453,7 +453,7 @@ class TestFactoryBase {
 template <class TestClass>
 class TestFactoryImpl : public TestFactoryBase {
  public:
-  Test* CreateTest() override { return new TestClass; }
+  Test* CreateTest() override { return static_cast<Test *>(new TestClass); }
 };
 
 #ifdef GTEST_OS_WINDOWS

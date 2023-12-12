@@ -1,0 +1,6 @@
+# ninja log v5
+52	68	1702379124065121000	lib/libgtest_main.a	2f3c80d29903c68d
+8	52	1702379124048996000	lib/libgtest.a	71f2987a9baf0841
+0	2034	1702378962045866098	lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	2dd3d440a0b2095d
+0	582	1702378960597975507	lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	6601451ff6de29a2
+0	59	1702379379705718377	build.ninja	47d69d2039757c77
