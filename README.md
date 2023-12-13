@@ -29,3 +29,6 @@ As for the tests, you must run the executable Google_Tests_run in CLion, and it 
 Here you can see the coverage of our tests, and that they are all passing!
 
 ![img.png](img.png)
+
+## Extra bonus feature
+Score counter
