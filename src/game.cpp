@@ -20,7 +20,19 @@ Game::Game() {
     initWindow();
     initBackground();
     initPlayer();
+
+    ghostsEaten = 0;
+    roundEnded = false;
+    if (!font.loadFromFile("../resources/arial.ttf")) {
+        throw std::runtime_error("Could not load font");
+    }
+
+    // Initialize scoreboard text properties
+    scoreboardText.setFont(font);
+    scoreboardText.setCharacterSize(24);
+    scoreboardText.setFillColor(sf::Color::Black);
 }
+
 /**
  * Window initializer.
  */
@@ -55,6 +67,34 @@ int Game::initPlayer() {
     }
     player.setTexture(&playerTexture);
     return 0;
+}
+
+void Game::checkRoundEnd(){
+    if (roundTimer.getElapsedTime().asSeconds() >= 30) { // second round
+        roundEnded = true;
+        roundTimer.restart();
+    }
+}
+
+void Game::displayScoreboard(){
+    std::string scoreText = "Player: 1\nGhosts Eaten: " + std::to_string(ghostsEaten);
+    scoreboardText.setString(scoreText);
+
+    // Calculate the size of the text for background sizing
+    sf::FloatRect textBounds = scoreboardText.getLocalBounds();
+
+    // Create a background rectangle slightly larger than the text
+    sf::RectangleShape background(sf::Vector2f(textBounds.width + 20, textBounds.height + 20));
+    background.setFillColor(sf::Color::White);
+
+    // Center the background and text in the middle of the screen
+    sf::Vector2f center(SCENE_WIDTH / 2, SCENE_HEIGHT / 2);
+    background.setPosition(center.x - background.getSize().x / 2, center.y - background.getSize().y / 2);
+    scoreboardText.setPosition(center.x - textBounds.width / 2, center.y - textBounds.height / 2);
+
+    // Draw the background and then the text
+    window.draw(background);
+    window.draw(scoreboardText);
 }
 
 /**
@@ -111,6 +151,7 @@ void Game::spawnGhost() {
 
         ghost.setTexture(&ghostTexture);
 
+
         // Generate a random direction for the ghost
         sf::Vector2f randomDirection(rand() % 3 - 1, rand() % 3 - 1);
         sf::Vector2f ghostDirection = randomDirection;
@@ -125,6 +166,12 @@ void Game::spawnGhost() {
  * Function to update the position of the player and ghosts.
  */
 void Game::update() {
+
+    checkRoundEnd();
+
+    if (roundEnded) {
+        return;
+    }
     processInput();
 
     // Spawn a new ghost
@@ -157,6 +204,7 @@ void Game::update() {
 
         // Update ghost position
         ghosts[i].setPosition(newGhostPosition);
+
     }
 
     // Player movement
@@ -192,8 +240,7 @@ void Game::update() {
             // Collision detected, remove the ghost
             ghosts.erase(ghosts.begin() + i);
             ghostDirections.erase(ghostDirections.begin() + i);
-            // Perform any action we want upon collision (e.g., score update, game over)
-            // ...
+            ghostsEaten++;
         }
     }
 }
@@ -208,10 +255,16 @@ void Game::render() {
     window.draw(background);
     window.draw(player);
 
-    // Draw all ghosts present on the screen
-    for (const auto& ghost : ghosts) {
-        window.draw(ghost);
+    if (roundEnded) {
+        displayScoreboard(); // Show the scoreboard
+    } else {
+        // Regular game rendering (draw player, ghosts, etc.)
+        window.draw(player);
+        for (const auto& ghost : ghosts) {
+            window.draw(ghost);
+        }
     }
+
 
     window.display();
 }
@@ -220,9 +273,14 @@ void Game::render() {
  */
 int Game::run() {
     srand(static_cast<unsigned>(time(nullptr)));
+    roundTimer.restart(); // Start the round timer
+
     while (window.isOpen()) {
+        processInput();  // Move this out of update and call it here
         update();
         render();
     }
+
+    std::cout << "Game over!" << std::endl;
     return 0;
 }

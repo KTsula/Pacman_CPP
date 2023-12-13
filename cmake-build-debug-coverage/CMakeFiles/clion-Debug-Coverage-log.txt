@@ -1,5 +1,5 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja "-DCMAKE_CXX_FLAGS=-fcoverage-mapping -fprofile-instr-generate" "-DCMAKE_C_FLAGS=-fcoverage-mapping -fprofile-instr-generate" -G Ninja -S /Users/mirandadrummond/CLionProjects/Pacman_CPP -B /Users/mirandadrummond/CLionProjects/Pacman_CPP/cmake-build-debug-coverage
 -- Found SFML 2.6.1 in /opt/homebrew/lib/cmake/SFML
--- Configuring done (0.1s)
+-- Configuring done (0.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/mirandadrummond/CLionProjects/Pacman_CPP/cmake-build-debug-coverage

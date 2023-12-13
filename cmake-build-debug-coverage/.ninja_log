@@ -1,16 +1,11 @@
 # ninja log v5
-1	578	1702378776459082325	Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	9cc64615d344f834
-2076	2120	1702378778006426000	lib/libgtest.a	a077bb15124b83bc
-2120	2135	1702378778020608000	lib/libgtest_main.a	c5c8add6d0f4e50f
-6	584	1702379040444740839	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	64142392140ffd29
-1	2076	1702378777953595279	Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	8c0b7eca82f06e5f
-8	705	1702394316286978156	Google_tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o	7e8217009366739a
-2135	2180	1702378778064547377	Google_tests/Google_Tests_run	bebd9447fe6f8a20
-20	636	1702394401761437426	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	64142392140ffd29
-636	810	1702394401933075592	Google_tests/Google_Tests_run	bebd9447fe6f8a20
-5	611	1702394639125715471	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	64142392140ffd29
-5	586	1702394688742168184	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	64142392140ffd29
-5	662	1702394688817473556	Google_tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o	7e8217009366739a
-662	814	1702394688968574470	Google_tests/Google_Tests_run	bebd9447fe6f8a20
-5	751	1702394780369351842	Google_tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o	7e8217009366739a
-752	910	1702394780528004480	Google_tests/Google_Tests_run	bebd9447fe6f8a20
+3	627	1702427171068999791	Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	6c19d66f35cb46ea
+2140	2234	1702427172680680000	lib/libgtest.a	a077bb15124b83bc
+2234	2250	1702427172697186000	lib/libgtest_main.a	c5c8add6d0f4e50f
+11	849	1702427577904697667	Google_tests/CMakeFiles/Google_Tests_run.dir/__/src/game.cpp.o	1c32b6f2ded40789
+3	2140	1702427172578677762	Google_tests/lib/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	719314bf5a245c51
+2	766	1702427171207541354	Google_tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o	a7f2b784cb480a1c
+4	612	1702427517373046290	CMakeFiles/2D_game_assignment.dir/src/game.cpp.o	8e95584e32a7d11b
+849	901	1702427577959778843	Google_tests/Google_Tests_run	6351a0867d0b4ca3
+1	453	1702426870735087469	CMakeFiles/2D_game_assignment.dir/src/main.cpp.o	ddd2a53ccf5e7e7b
+612	652	1702427517415439935	2D_game_assignment	3dffbe1264247728

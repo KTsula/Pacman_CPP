@@ -176,6 +176,9 @@
 			"path" : "resources/ghost.png"
 		},
 		{
+			"path" : "resources/arial.ttf"
+		},
+		{
 			"path" : "Google_tests/CMakeLists.txt"
 		},
 		{
@@ -186,6 +189,9 @@
 		},
 		{
 			"path" : "resources/ghost.png"
+		},
+		{
+			"path" : "resources/arial.ttf"
 		},
 		{
 			"path" : "Google_tests/lib/CMakeLists.txt"
