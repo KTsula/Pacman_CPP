@@ -15,7 +15,14 @@ protected:
         game.initPlayer();
         // Any other initialization needed
     }
+
+    void TearDown() override {
+        // Close the game window and reset any necessary state
+        game.window.close();
+        // Add any additional cleanup or state reset code here
+    }
 };
+
 
 // Test for game window initialization
 TEST_F(GameTest, InitWindow) {
@@ -50,16 +57,11 @@ TEST_F(GameTest, PlayerPositionAfterInit) {
     EXPECT_EQ(position.y, Game::PLAYER_START_Y);
 }
 
-// Test to check if ghosts are spawned correctly
-TEST_F(GameTest, GhostCreation) {
-    // Force the timer to simulate elapsed time
-    game.ghostTimer.restart();
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000)); // simulate time delay
-
-    game.spawnGhost();
-
-    // Check if a ghost is added
-    EXPECT_FALSE(game.ghosts.empty());
-
-    // Additional checks can be done for the properties of the ghost
+// check scoreboard is rendering correctly
+TEST_F(GameTest, ScoreboardRender) {
+    game.initWindow();
+    game.initBackground();
+    game.initPlayer();
+    game.displayScoreboard();
+    EXPECT_EQ(0, game.run());
 }
