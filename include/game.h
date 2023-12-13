@@ -19,7 +19,6 @@ public:
     sf::Clock ghostTimer;
     std::vector<sf::CircleShape> ghosts;
     sf::Vector2f getPlayerPosition() const { return player.getPosition(); }
-    const std::vector<sf::CircleShape>& getGhosts() const { return ghosts; }
 
     int initWindow();
     int initBackground();
@@ -27,7 +26,7 @@ public:
     int run();
     bool isWindowOpen() const { return window.isOpen(); }
     void spawnGhost();
-
+    void displayScoreboard();
 
 private:
     friend class GameTest; // this way we can test all of the private things when we test!
@@ -53,7 +52,5 @@ private:
     void processInput();
     void update();
     void render();
-    void inputPlayerName();
     void checkRoundEnd();
-    void displayScoreboard();
 };
