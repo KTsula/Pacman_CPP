@@ -14,19 +14,21 @@ public:
     Game();
 
     // i tried to use friend classes but it didnt work so i just made what im testing public
+    static const float PLAYER_START_X;
+    static const float PLAYER_START_Y;
+    sf::Clock ghostTimer;
+    std::vector<sf::CircleShape> ghosts;
+    sf::Vector2f getPlayerPosition() const { return player.getPosition(); }
+    const std::vector<sf::CircleShape>& getGhosts() const { return ghosts; }
+
     int initWindow();
     int initBackground();
     int initPlayer();
     int run();
     bool isWindowOpen() const { return window.isOpen(); }
-    sf::Vector2f getPlayerPosition() const { return player.getPosition(); }
-    static const float PLAYER_START_X;
-    static const float PLAYER_START_Y;
     void spawnGhost();
-    const std::vector<sf::CircleShape>& getGhosts() const { return ghosts; }
 
-    sf::Clock ghostTimer;
-    std::vector<sf::CircleShape> ghosts;
+
 private:
     friend class GameTest; // this way we can test all of the private things when we test!
     static const float SCENE_WIDTH;
@@ -41,9 +43,17 @@ private:
     // Vector to store ghost sprites
     sf::Texture ghostTexture; // Ghost texture
     std::vector<sf::Vector2f> ghostDirections; // Vector to store ghost movement directions
-    // Timer for ghost appearance
+    std::string playerName;
+    int ghostsEaten;
+    bool roundEnded;
+    sf::Clock roundTimer;
+    sf::Text scoreboardText;
+    sf::Font font;
 
     void processInput();
     void update();
     void render();
+    void inputPlayerName();
+    void checkRoundEnd();
+    void displayScoreboard();
 };

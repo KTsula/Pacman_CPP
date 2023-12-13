@@ -89,7 +89,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-fcoverage-mapping -fprofile-instr-generate -g -std=c++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics"
+					"fragment" : "-fcoverage-mapping -fprofile-instr-generate -g -std=c++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -mmacosx-version-min=14.1 -fcolor-diagnostics"
 				},
 				{
 					"fragment" : " -DGTEST_HAS_PTHREAD=1  "
