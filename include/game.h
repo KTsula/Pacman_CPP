@@ -33,6 +33,7 @@ private:
     static const float SCENE_WIDTH;
     static const float SCENE_HEIGHT;
     static const float RADIUS;
+    float countdownTime = 30.0f;
     sf::RenderWindow window;
     sf::Texture backgroundTexture;
     sf::Sprite background;

@@ -174,6 +174,15 @@ void Game::update() {
     }
     processInput();
 
+    if (!roundEnded) {
+        float elapsedTime = roundTimer.restart().asSeconds();
+        countdownTime -= elapsedTime;
+        if (countdownTime <= 0) {
+            roundEnded = true;
+            countdownTime = 0;
+        }
+    }
+
     // Spawn a new ghost
     spawnGhost();
 
@@ -253,6 +262,16 @@ void Game::update() {
 void Game::render() {
     window.clear(sf::Color::White);
     window.draw(background);
+
+    if (!roundEnded) {
+        sf::Text timerText;
+        timerText.setFont(font);
+        timerText.setCharacterSize(24);
+        timerText.setFillColor(sf::Color::White);
+        timerText.setString("Time left: " + std::to_string(static_cast<int>(countdownTime)));
+        timerText.setPosition(10, 10); // Adjust position as needed
+        window.draw(timerText);
+    }
     window.draw(player);
 
     if (roundEnded) {
